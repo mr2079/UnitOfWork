@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using System.Reflection;
+using UOW = UnitOfWork.Architecture.Infrastructure.Implementations.UnitOfWork.UnitOfWork;
 using UnitOfWork.Architecture.Infrastructure.Persistence;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -17,6 +18,7 @@ builder.Services.AddDbContext<MainDbContext>(options =>
 });
 
 builder.Services.AddScoped<IMainDbContext, MainDbContext>();
+builder.Services.AddScoped<IUnitOfWork, UOW>();
 
 builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
 
