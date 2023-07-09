@@ -19,7 +19,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Architecture\Infrastructure\" />
+    <Folder Include="Architecture\Infrastructure\Migrations\" />
+    <Folder Include="Database\" />
   </ItemGroup>
 
 </Project>
