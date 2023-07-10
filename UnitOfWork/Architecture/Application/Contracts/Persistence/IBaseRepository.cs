@@ -18,7 +18,7 @@ public interface IBaseRepository
             string includeProperties
         ) where T : BaseEntity;
 
-    Task<List<T>> GetAllAsync<T>(CancellationToken cancellationToken) where T : BaseEntity;
+    Task<List<T>> GetAllAsync<T>() where T : BaseEntity;
 
     Task<List<T>> GetListAsync<T>(
             Expression<Func<T, bool>>? expression = null,

@@ -12,8 +12,17 @@ public class MainDbContext : DbContext, IMainDbContext
     {
         foreach (var entry in ChangeTracker.Entries<BaseEntity>().AsEnumerable())
         {
-            entry.Entity.CreatedAt = DateTime.Now;
-            entry.Entity.UpdatedAt = DateTime.Now;
+            switch (entry.State)
+            {
+                case EntityState.Added:
+                    entry.Entity.CreatedAt = DateTime.Now;
+                    entry.Entity.UpdatedAt= DateTime.Now;
+                    break;
+                case EntityState.Modified:
+                    entry.Entity.UpdatedAt = DateTime.Now;
+                    break;
+            }
+
         }
         return base.SaveChangesAsync(cancellationToken);
     }

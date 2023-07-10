@@ -45,9 +45,9 @@ public class BaseRepository : IBaseRepository
         return await query.SingleOrDefaultAsync(expression);
     }
 
-    public async Task<List<T>> GetAllAsync<T>(CancellationToken cancellationToken) where T : BaseEntity
+    public async Task<List<T>> GetAllAsync<T>() where T : BaseEntity
     {
-        return await _dbContext.Set<T>().ToListAsync(cancellationToken);
+        return await _dbContext.Set<T>().ToListAsync();
     }
 
     public Task<List<T>> GetListAsync<T>(
@@ -59,8 +59,8 @@ public class BaseRepository : IBaseRepository
         var query = expression != null ? _dbContext.Set<T>().Where(expression) : _dbContext.Set<T>();
 
         return orderBy != null
-            ? orderBy(query).ToListAsync(cancellationToken)
-            : query.ToListAsync(cancellationToken);
+            ? orderBy(query).ToListAsync()
+            : query.ToListAsync();
     }
 
     public T Add<T>(T entity) where T : BaseEntity
